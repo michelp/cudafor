@@ -1,0 +1,72 @@
+
+literals:
+
+ int: 
+ string: "foo"
+
+words:
+
+ gpu:
+  threadIdx
+  threadIdy
+  threadIdz
+  blockIdx
+  blockIdy
+  blockIdz
+  blockDimx
+  blockDimy
+  blockDimz
+
+ names:
+ def <name> ... ;
+  kernel <name> ... ;
+  var <name>
+  set <name>
+  const <name> <value>
+
+ i/o:
+  print
+  println
+
+ math:
+  +
+  -
+  *
+  /
+
+ reduce:
+  any
+  all
+  min
+  max
+
+stack:
+
+ 16 deep 64-bit stack per thread
+
+ stacks are in shared mem for stack reduction operations
+
+vars:
+
+ per thread local memory vars
+
+consts:
+
+ go in constant memory, use sparingly
+ 
+kernels:
+
+ a kernel is an interpreted sequence of tagged 64-bit, 8 byte aligned
+ words.
+
+ The lower 4 bits of each word encode flags:
+
+
+  0001: push 8-byte aligned data pointer
+
+  0010: push 60-bit integer
+
+  0100: push pointer to 60-bit byte count literal array data to follow
+
+  1000: call function pointer
+
